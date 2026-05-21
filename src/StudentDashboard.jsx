@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
 import InfoMessage from './InfoMessage';
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
+
 const StudentDashboard = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
@@ -51,14 +52,17 @@ const StudentDashboard = () => {
         else if (data && data.data && data.data.application) {
             const candidate = data.data.application;
             let course = "";let institute = "";
+            
+            // CORRECTED: Fixed the object property mapping for courses and institutes
             if (candidate.allocatedCourse) {
-                course = candidate.allocatedCourse.course.degree.endsWith('Technology') ? 'BTECH' : 'BE';
-                institute = candidate.allocatedCourse.course.course;
+                course = `${candidate.allocatedCourse.course.degree.endsWith('Technology') ? 'BTECH' : 'BE'} - ${candidate.allocatedCourse.course.course}`;
+                institute = candidate.allocatedCourse.institute.name;
             }
-            else {
+            else if (candidate.selectedCourses && candidate.selectedCourses.length > 0) {
                 course =  `${candidate.selectedCourses[0].course.degree.endsWith('Technology') ? 'BTECH' : 'BE'} - ${candidate.selectedCourses[0].course.course}`;
                 institute = `${candidate.selectedCourses[0].institute.name}` ;
             }
+            
             setStudentName(candidate.personalDetails.fullname);
             setApplication({
                 id: candidate.applicationNumber,
@@ -66,10 +70,11 @@ const StudentDashboard = () => {
                 instituteName: institute,
                 status: candidate.status,
                 isApplicationFeePaid: candidate.fee === 'pending' ? false : true,
-                length: candidate.selectedCourses.length - 1
+                length: candidate.selectedCourses?.length ? candidate.selectedCourses.length - 1 : 0
             })
         }
     }, [data])
+    
     if (isLoading) {
         return (
             <div className="container py-5 mt-5">
@@ -125,12 +130,6 @@ const StudentDashboard = () => {
         } catch (error) {
             setPasswordError(error.response.data.message || 'Invalid password');
         }
-        // if (confirmPassword === "password") { 
-        //     setApplication(null); 
-        //     handleCloseModal();
-        // } else {
-        //     setPasswordError("Incorrect account password. Please try again.");
-        // }
     };
 
     // Action execution handler for the Application Submission Fee
@@ -287,42 +286,31 @@ const StudentDashboard = () => {
                             <i className="bi bi-stars me-2 text-warning"></i>Recommended Programs
                         </h5>
                         <div className="row g-3">
-                            {/* Replace 'data.data.recommendedInstitutes' with the actual path 
-          where your array of institutes is returned from your API response.
-        */}
-                            {data?.data?.recommendedInstitutes && data.data.recommendedInstitutes.length > 0 ? (
-                                data.data.recommendedInstitutes.map((inst) => {
-                                    // Safely grab the first offered course from the institute if it exists
+                            {console.log(data.data.application),data?.data?.application && data.data.application.length > 0 ? (
+                                data.data.application.map((inst) => {
                                     const primaryCourseWrapper = inst.offeredCourses?.[0];
-                                    const courseDetails = primaryCourseWrapper?.courseId; // This is populated with the Course model object
+                                    const courseDetails = primaryCourseWrapper?.courseId; 
 
-                                    // If this institute doesn't have any offered courses setup, skip rendering this card
                                     if (!courseDetails) return null;
 
-                                    // Dynamically format the degree prefix (BTECH or BE) using your endsWith check
                                     const degreePrefix = courseDetails.degree?.endsWith('Technology') ? 'BTECH' : 'BE';
-
                                     return (
                                         <div className="col-12 col-md-6" key={inst._id}>
                                             <div className="card border-0 shadow-sm h-100 bg-white rounded-3 p-3">
                                                 <div className="d-flex justify-content-between align-items-start gap-2 mb-1">
-                                                    {/* 1. Display the mapped course name */}
                                                     <h6 className="fw-bold m-0 text-dark">
                                                         {degreePrefix} - {courseDetails.course}
                                                     </h6>
-                                                    {/* 2. Display the mapped institute code as a small badge */}
                                                     <span className="badge bg-light text-muted border fw-mono extra-small">
                                                         Code: {inst.code}
                                                     </span>
                                                 </div>
 
-                                                {/* 3. Display the mapped institute name */}
                                                 <p className="text-muted small mb-3">
                                                     <i className="bi bi-building me-1 small text-indigo"></i> {inst.name}
                                                 </p>
 
                                                 <div className="mt-auto border-top pt-2 d-flex justify-content-between align-items-center">
-                                                    {/* Displaying extra context from the offered course details array */}
                                                     <span className="small text-muted fw-semibold">
                                                         Seats Available: {primaryCourseWrapper.totalSeats - primaryCourseWrapper.filledSeats}
                                                     </span>
@@ -339,7 +327,6 @@ const StudentDashboard = () => {
                                     );
                                 })
                             ) : (
-                                // Fallback content if the recommendations list is empty or hasn't loaded
                                 <div className="col-12">
                                     <div className="p-3 bg-white text-muted rounded text-center small shadow-sm border border-dashed">
                                         No matching institutional recommendations found at this time.
@@ -409,7 +396,6 @@ const StudentDashboard = () => {
                                             <i className="bi bi-shield-lock-fill fs-4"></i>
                                         </div>
                                         <div className="flex-grow-1">
-                                            {/* Dynamic Modal Title Selection */}
                                             <h5 className="modal-title fw-extrabold text-dark">
                                                 {application?.isApplicationFeePaid ? "Withdraw Application" : "Delete Draft Application"}
                                             </h5>
@@ -419,12 +405,10 @@ const StudentDashboard = () => {
                                     </div>
                                     
                                     <div className="modal-body px-4 py-2">
-                                        {/* Dynamic Modal Body Text Selection */}
                                         <p className="text-secondary small mb-3">
                                             You are requesting to permanently {application?.isApplicationFeePaid ? "withdraw your active submission profile" : "delete your draft application file"} for <strong>{application?.courseName}</strong>. This clears your data from our queue instantly. Please input your password below to proceed.
                                         </p>
                                         
-                                        {/* Password Input Box */}
                                         <div className="mb-2">
                                             <label className="form-label small fw-bold text-secondary mb-1">Account Password</label>
                                             <input 
@@ -454,7 +438,6 @@ const StudentDashboard = () => {
                                         >
                                             Cancel
                                         </button>
-                                        {/* Dynamic Modal Submission Button Action Selection */}
                                         <button 
                                             type="submit" 
                                             className="btn btn-sm btn-danger fw-semibold px-3 shadow-sm"

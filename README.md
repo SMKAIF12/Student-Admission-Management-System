@@ -1,8 +1,8 @@
 # Student Admission Management System Application Using MERN Stack
-Front End: ReactJS,ReactQueries,LifeCycleHooks
-Back End: NodeJS, ExpressJS, jwt, bcrypt
-DataBase: MongoDB (Atlas)
--Front End Application link:
+- Front End: ReactJS,ReactQueries,LifeCycleHooks
+- Back End: NodeJS, ExpressJS, jwt, bcrypt
+- DataBase: MongoDB (Atlas)
+- Front End Application link:
 - https://student-admission-management-system-rust.vercel.app/login
 - Backend application link:
 - https://student-admission-management-system-git-main-smkaif12s-projects.vercel.app/

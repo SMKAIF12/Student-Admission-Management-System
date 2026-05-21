@@ -24,7 +24,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:3000/login', formData, {
+            const response = await axios.post('https://student-admission-management-system.vercel.app/login', formData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

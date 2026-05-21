@@ -36,7 +36,7 @@ const Register = () => {
     try {
       // Replaced fetch with axios.post
       // We pass only the properties needed by your backend register controller (name, email, password)
-      const response = await axios.post('http://localhost:3000/register', {
+      const response = await axios.post('https://student-admission-management-system.vercel.app/register', {
         name: formData.name,
         email: formData.email,
         password: formData.password

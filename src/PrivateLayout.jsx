@@ -12,7 +12,7 @@ const PrivateLayout = () => {
       return;
     }
     try {
-      const response = await axios.get('http://localhost:3000/auth', {
+      const response = await axios.get('https://student-admission-management-system.vercel.app/auth', {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -143,7 +143,7 @@ const ApplyForAdmission = () => {
         setPreferences(preferences.filter((_, i) => i !== index));
     };
 
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
     const fetchExistingApplication = async () => {
         try {
             setCheckingExisting(true);

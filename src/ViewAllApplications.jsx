@@ -9,7 +9,7 @@ import autoTable from 'jspdf-autotable';
 const ViewAllApplications = () => {
   const queryClient = useQueryClient();
   const token = localStorage.getItem('token');
-  const baseUrl = 'http://localhost:3000';
+  const baseUrl = 'https://student-admission-management-system.vercel.app';
 
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");

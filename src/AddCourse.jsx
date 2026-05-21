@@ -9,7 +9,7 @@ const AddCourse = () => {
     const location = useLocation();
     const queryClient = useQueryClient();
     const token = localStorage.getItem('token');
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
 
     // Safely verify if the user clicked 'Add' or 'Edit' from the course matrix screen
     const isEditMode = !!location.state?.editMode;

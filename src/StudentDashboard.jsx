@@ -32,7 +32,7 @@ const StudentDashboard = () => {
         isApplicationFeePaid: false,    // Gatekeeper to official submission
         length: 0
     });
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
     const fetchData = async()=>{
         return await axios.get(`${baseUrl}/application/get/${candidate}`,{
             headers:{

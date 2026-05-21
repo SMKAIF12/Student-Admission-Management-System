@@ -9,7 +9,7 @@ const AddInstitute = () => {
     const location = useLocation(); 
     const queryClient = useQueryClient();
     const token = localStorage.getItem('token');
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
 
     // Parse whether the admin clicked 'Add' or 'Edit' from the matrix grid
     const isEditMode = !!location.state?.editMode;

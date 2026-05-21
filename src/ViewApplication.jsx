@@ -10,7 +10,7 @@ import autoTable from 'jspdf-autotable';
 const ViewApplication = () => {
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
 
     let candidateId = null;
     if (token) {

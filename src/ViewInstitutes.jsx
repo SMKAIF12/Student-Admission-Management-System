@@ -8,7 +8,7 @@ const ViewInstitutes = () => {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const token = localStorage.getItem('token');
-    const baseUrl = 'http://localhost:3000';
+    const baseUrl = 'https://student-admission-management-system.vercel.app';
 
     // State parameters for searching and multi-mode ordering metrics
     const [searchTerm, setSearchTerm] = useState("");

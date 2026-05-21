@@ -4,7 +4,6 @@ import { jwtDecode } from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
-import infoMessage from './infoMessage';
 import InfoMessage from './infoMessage';
 import { QueryClient, useQueryClient } from '@tanstack/react-query';
 const StudentDashboard = () => {

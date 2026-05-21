@@ -25,7 +25,6 @@ function App() {
         <Route element={<PrivateLayout />}>
           <Route path='/student/dashboard' element={<StudentDashboard />} />
           <Route path='/student/apply' element={<ApplyForAdmission />} />
-          <Route path='/home' element={<Home />} />
           <Route path='/student/view-application' element={<ViewApplication />} />
           <Route path='/admin/applications' element={<ViewAllApplications />} />
           <Route path='/admin/institutes' element={<ViewInstitutes/>} />

@@ -20,10 +20,10 @@ Backend application link:
 - Admin can allocate the seat in bulk.(allocation pool after the application window closes)
 - Can Add Institutes and Courses.
 
-Pagination, Search, filter is done in client side.
-Used React Query for handling the requests to server.
+- Pagination, Search, filter is done in client side.
+- Used React Query for handling the requests to server.
 Login Info
-Admin
+# Admin
 - email: admin@gmail.com
 - password: admin@123
 Student:

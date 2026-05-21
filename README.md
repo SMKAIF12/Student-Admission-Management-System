@@ -26,7 +26,7 @@ Login Info
 # Admin
 - email: admin@gmail.com
 - password: admin@123
-# # Student:
+# Student:
 - can create new account or use
 - email: newstudent@gmail.com
 - password: 12345

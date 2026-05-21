@@ -4,7 +4,6 @@ import Login from './Login'
 import Register from './Register';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import PrivateLayout from './PrivateLayout';
-import Home from './Home';
 import StudentDashboard from './StudentDashboard';
 import ApplyForAdmission from './ApplyForAdmission';
 import ViewApplication from './ViewApplication';

@@ -3,11 +3,9 @@ Front End: ReactJS,ReactQueries,LifeCycleHooks
 Back End: NodeJS, ExpressJS, jwt, bcrypt
 DataBase: MongoDB (Atlas)
 Front End Application link:
-
-
+ https://student-admission-management-system-rust.vercel.app/login
 Backend application link:
-
-
+ https://student-admission-management-system-git-main-smkaif12s-projects.vercel.app/
 # Features:
 # Candidate Module:
 - Candidate Can Apply for the Admission using their details and add list of preference of courses in colleges.
